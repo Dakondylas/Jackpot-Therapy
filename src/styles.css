@@ -1,0 +1,133 @@
+button.open {
+    background-color: #9d7fd5;
+    color: white;
+    padding: 15px 50px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: rgb(194, 128, 255) 1px 1px 2px;
+    display: inline-block;
+    font-size: 32px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 15%;
+    font-family: 'videophreak', sans-serif;
+    border: 3px black solid;
+    box-shadow: rgb(136, 0, 255) 1px 1px 10px;
+    position: absolute; 
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-text-stroke:#000000 1px;
+}
+
+button.closed {
+    background-color:  #8f74c3;
+    color: rgb(228, 228, 228);
+    padding: 15px 50px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: rgb(199, 121, 255) -1px 0px 2px;
+    display: inline-block;
+    font-size: 32px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 15%;
+    font-family: 'videophreak', sans-serif;
+    border: 3px black solid;
+    box-shadow: rgb(255, 255, 255) -1px -1px 5px;
+    position: absolute; 
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-text-stroke:#000000 1px
+}
+
+h1.title {
+    font-family: 'videophreak', sans-serif;
+    font-size: 80px;
+    text-shadow: rgb(144, 0, 255) 0px 0px 20px;
+    color: #c19fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 12vh;
+    text-align: center;
+    -webkit-text-stroke:#000000 1px;
+}
+
+img.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+img.avatar3 {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 150px;
+    height: auto;
+    border-radius: 10%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}
+
+img.avatar1 {
+    position:absolute;
+    top: 27%;
+    left: 38.7%;
+    width: 400px;
+    height: auto;
+    border-radius: 10%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}
+
+img.avatar2 {
+    position: absolute;
+    top: 40%;
+    width: 150px;
+    height: auto;
+    border-radius: 10%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}
+
+h1.profileName {
+    font-family: 'videophreak', sans-serif;
+    font-size: 40px;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px #000000;
+    position: absolute;
+    left: 10%;
+}
+
+img.slotMachine {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px;
+    height: auto;
+}
+
+img.profileIcon {
+    position: absolute;
+    top: 40%;
+    width: 150px;
+    height: auto;
+    border-radius: 10%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}
+
+img.profileIconSelected {
+    position: absolute;
+    top: 40%;
+    width: 150px;
+    height: auto;
+    border-radius: 10%;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 1);
+    border: 3px solid gold;
+}

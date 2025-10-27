@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jackpot-Therapy</title>
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    @import url('https://fonts.cdnfonts.com/css/videophreak');
+    </style>
+</head>
+<body>
+    <!--Just title screen elements-->
+    <h1 class="title" id="titleText"><strong>Jackpot-Therapy</strong></h1>
+    <button class="open" id="startButton">Start</button>
+    <!--Just profile screen elements-->
+    <img src="../images/Avatars/createNew.png" class="avatar2" id="createNewProfile" style="display: none; top: 27%; left: 5%; clickable: true;">
+    <h1 class="title" id="profileText" style="display: none;"><strong>Select an Avatar</strong></h1>
+    <button class="open" id="selectButton" style="display: none; top: 85%;">✔</button>
+    <button class="open" id="selectLeftButton" style="display: none; top: 85%; left: 30%;">＜</button>
+    <button class="open" id="selectRightButton" style="display: none; top: 85%; left: 70%;">＞</button>
+    <!--avatarSelectMid appears in main and character select-->
+    <img src="../images/Avatars/1.png" class="avatar1" id="avatarSelectMid" style="display: none;">
+    <img src="../images/Avatars/10.png" class="avatar2" id="avatarSelectLeft" style="display: none; left: 20%;">
+    <img src="../images/Avatars/2.png" class="avatar2" id="avatarSelectRight" style="display: none; left: 70%;">
+    <!--Main Screen Elements-->
+    <h1 class="profileName" id="profileName" style="display: none;">Dillon K</h1>
+    <h1 class="profileName" id="balance" style="display: none; top: 6%;">$1,000.00</h1>
+    <img src="../images/slotMachine.png" style="display: none;" class="slotMachine" id="slotMachine">
+    <!--Universal Elements-->
+    <img src="../images/TitleScreen.jpg" class="background" id="background">
+    <audio src="../sounds/music.mov" id="music" autoplay loop volume="0.5"></audio>
+    <audio src="../sounds/click.mp3" id="clickSound"></audio>
+    <button class="open" id="backOrQuitButton" style="top: 93%; left: 7%;">Quit</button>
+</body>
+</html>
