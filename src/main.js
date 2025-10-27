@@ -42,6 +42,7 @@ let selectedProfileTemp = 0;
 document.onload = function() {
     // The music doesnt start without this for some reason
     music.controls = true;
+    music.play()
     music.controls = false;
 }
 
