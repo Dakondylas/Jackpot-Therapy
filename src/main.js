@@ -46,7 +46,9 @@ document.onload = function() {
     music.controls = false;
 }
 
-
+document.onmouseover = function() {
+    music.play();
+};
 
 startButton.onmousedown = function() {
     buttonClick(startButton, profileScreen);
