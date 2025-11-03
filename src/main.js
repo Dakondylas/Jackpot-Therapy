@@ -15,7 +15,13 @@ let avatarSelectRight = document.getElementById('avatarSelectRight');
 // Main screen elements
 let profileNameElement = document.getElementById('profileName');
 let balanceElement = document.getElementById('balance');
-let slotMachine = document.getElementById('slotMachine');
+let slot1 = document.getElementById('slot1');
+let slot2 = document.getElementById('slot2');
+let slot3 = document.getElementById('slot3');
+let spinButton = document.getElementById('spinButton');
+let loanButton = document.getElementById('loanButton');
+let betButton = document.getElementById('betButton');
+let betAmount = document.getElementById('betAmount');
 
 // Elements that appear in every screen
 let music = document.getElementById('music');
@@ -42,13 +48,10 @@ let selectedProfileTemp = 0;
 document.onload = function() {
     // The music doesnt start without this for some reason
     music.controls = true;
-    music.play()
     music.controls = false;
 }
 
-document.onmouseover = function() {
-    music.play();
-};
+
 
 startButton.onmousedown = function() {
     buttonClick(startButton, profileScreen);
@@ -185,7 +188,12 @@ backOrQuitButton.onmousedown = function() {
             selectButton.style.display = 'none';
             profileNameElement.style.display = 'none';
             balanceElement.style.display = 'none';
-            slotMachine.style.display = 'none';
+            slot1.style.display = 'none';
+            slot2.style.display = 'none';
+            slot3.style.display = 'none';
+            spinButton.style.display = 'none';
+            loanButton.style.display = 'none';
+            betButton.style.display = 'none';
             startButton.style.display = 'block';
             titleText.style.display = 'block';
             background.setAttribute('src', '../images/TitleScreen.jpg');
@@ -226,7 +234,12 @@ function profileScreen() {
         profileText.style.display = 'block';
         profileNameElement.style.display = 'none';
         balanceElement.style.display = 'none';
-        slotMachine.style.display = 'none';
+        slot1.style.display = 'none';
+        slot2.style.display = 'none';
+        slot3.style.display = 'none';
+        spinButton.style.display = 'none';
+        loanButton.style.display = 'none';
+        betButton.style.display = 'none';
         currentScreen = "profile-select"
 
         // TODO: make a function that iterates through all of the profiles and either checks if they are in the 
@@ -272,7 +285,12 @@ function mainScreen(){
         avatarSelectMid.setAttribute('class', 'avatar3')
         profileNameElement.style.display = 'block';
         balanceElement.style.display = 'block';
-        slotMachine.style.display = 'block';
+        slot1.style.display = 'block';
+        slot2.style.display = 'block';
+        slot3.style.display = 'block';
+        spinButton.style.display = 'block';
+        loanButton.style.display = 'block';
+        betButton.style.display = 'block';
         currentScreen = "main";
     }
     // change background to main screen

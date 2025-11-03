@@ -105,12 +105,13 @@ h1.profileName {
 }
 
 img.slotMachine {
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 1000px;
-    height: auto;
+    position:absolute;
+    top: 27%;
+    left: 38.7%;
+    width: 400px;
+    height: 400px;
+    border-radius: 10%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1);
 }
 
 img.profileIcon {
@@ -130,4 +131,17 @@ img.profileIconSelected {
     border-radius: 10%;
     box-shadow: 0 0 15px rgba(255, 215, 0, 1);
     border: 3px solid gold;
+}
+
+div.dropDownMenu {
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 10;
 }
