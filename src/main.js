@@ -22,6 +22,11 @@ let spinButton = document.getElementById('spinButton');
 let loanButton = document.getElementById('loanButton');
 let betButton = document.getElementById('betButton');
 let betAmount = document.getElementById('betAmount');
+let amountOptions = document.getElementById('amountOptions');
+let bet10 = document.getElementById('bet10');
+let bet100 = document.getElementById('bet100');
+let bet1000 = document.getElementById('bet1000');
+let betAll = document.getElementById('betAll');
 
 // Elements that appear in every screen
 let music = document.getElementById('music');
@@ -49,12 +54,16 @@ document.onload = function() {
     // The music doesnt start without this for some reason
     music.controls = true;
     music.controls = false;
+    music.play();
 }
 
 
 
 startButton.onmousedown = function() {
     buttonClick(startButton, profileScreen);
+    if (music.paused) {
+        music.play();
+    }
 };
 
 selectButton.onmousedown = function() {
@@ -201,6 +210,52 @@ backOrQuitButton.onmousedown = function() {
         }
     });
 }
+
+betButton.onmousedown = function() {
+    buttonClick(betButton, function() {
+        let bet = betAmount.innerHTML;
+        if (amountOptions.style.display == 'none') {
+            amountOptions.style.display = 'block';
+            betButton.innerHTML = '↑  Bet: <strong>$</strong><strong id="betAmount">' + bet + '</strong>  ↑'
+        } else {
+            amountOptions.style.display = 'none';
+            betButton.innerHTML = '↓  Bet: <strong>$</strong><strong id="betAmount">' + bet + '</strong>  ↓'
+        }
+    });
+}
+
+bet10.onmousedown = function() {
+    buttonClick(bet10, function() {
+        betAmount.innerHTML = '10';
+        amountOptions.style.display = 'none';
+        betButton.innerHTML = '↑  Bet: <strong>$</strong><strong id="betAmount">10</strong>  ↑'
+    });
+}
+
+bet100.onmousedown = function() {
+    buttonClick(bet100, function() {
+        betAmount.innerHTML = '100';
+        amountOptions.style.display = 'none';
+        betButton.innerHTML = '↑  Bet: <strong>$</strong><strong id="betAmount">100</strong>  ↑'
+    });
+}
+
+bet1000.onmousedown = function() {
+    buttonClick(bet1000, function() {
+        betAmount.innerHTML = '1000';
+        amountOptions.style.display = 'none';
+        betButton.innerHTML = '↑  Bet: <strong>$</strong><strong id="betAmount">1000</strong>  ↑'
+    });
+}
+
+betAll.onmousedown = function() {
+    buttonClick(betAll, function() {
+        betAmount.innerHTML = 'ALL IN';
+        amountOptions.style.display = 'none';
+        betButton.innerHTML = '↑  Bet: <strong>$</strong><strong id="betAmount">ALL IN</strong>  ↑'
+    });
+}
+
 
 // function for button clicking, does the clicking animation, plays the click sound, and when you 
 // release the mouse it does the specified action. button parameter is the button element. action parameter 
