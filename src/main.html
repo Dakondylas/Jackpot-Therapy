@@ -31,14 +31,22 @@
     <img src="../images/Icons/2.png" style="display: none; left: 39%;" class="slotMachine" id="slot2">
     <img src="../images/Icons/3.png" style="display: none; left: 70%;" class="slotMachine" id="slot3">
     <button class="open" style="top: 80%; left: 50%; display: none;" id="spinButton">SPIN</button>
+    <h1 class="profileName" id="debtElement" style="top: 750px; left: 88%; display: none;"><strong>Debt: $</strong><strong id="debtNum">0</strong></h1>
     <button class="open" style="top: 93%; left: 93%; display: none;" id="loanButton">Loan</button>
     <button class="open" style="top: 5%; left: 50%; display: none;" id="betButton">↓  Bet: <strong>$</strong><strong id="betAmount">100</strong>  ↓</button>
+    <audio src="../sounds/spin.mp3" id="spinSound"></audio>
+    <audio src="../sounds/jackpot.mp3" id="jackpotSound"></audio>
     <div id="amountOptions" style="display: none;" class="dropDownMenu">
         <button class="open" style="top: 50px; width: 250px;" id="bet10">10</button>
         <button class="open" style="top: 140px; width: 250px;" id="bet100">100</button>
         <button class="open" style="top: 240px; width: 250px;" id="bet1000">1,000</button>
         <button class="open" style="top: 340px; width: 250px;" id="betAll">ALL IN</button>
     </div>
+    <h1 class="loseScreen" id="loseScreen" style="display: none;">
+        You are out of money and in debt!
+        <br>
+        You Lose.
+    </h1>
 
     <!--Universal Elements-->
     <img src="../images/TitleScreen.jpg" class="background" id="background">

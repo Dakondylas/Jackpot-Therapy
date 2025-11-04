@@ -147,3 +147,46 @@ div.dropDownMenu {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 10;
 }
+
+button.disabled {
+    background-color: grey;
+    color: darkgrey;
+    padding: 15px 50px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: none;
+    display: inline-block;
+    font-size: 32px;
+    margin: 4px 2px;
+    cursor: not-allowed;
+    border-radius: 15%;
+    font-family: 'videophreak', sans-serif;
+    border: 3px black solid;
+    box-shadow: none;
+    position: absolute; 
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-text-stroke:#000000 1px;
+}   
+
+h1.loseScreen {
+    font-family: 'videophreak', sans-serif;
+    font-size: 50px;
+    text-shadow: rgb(144, 0, 255) 0px 0px 20px;
+    color: #c19fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 20vh;
+    text-align: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    padding: 20px;
+    background-color: #d4bcff;
+    border-radius: 10%;
+    outline: #000000 solid 3px;
+    transform: translateX(-50%);
+    -webkit-text-stroke:#000000 1px;
+}
