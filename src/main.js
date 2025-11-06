@@ -46,6 +46,7 @@ let currentScreen = "title";
 let profileMatrix = [{name: "Default", avatar: 1, balance: 1000}];
 let slotArray = [1,1,1];
 let spinningCheck = [false];
+let brokeCheckInterval = null;
 //change these variable to be assigned to the selected profile when loading a profile
 let balance = 1000;
 let name = "Default";
@@ -190,6 +191,17 @@ loanButton.onmousedown = function() {
             debtNum.innerHTML = parseInt(debtNum.innerHTML) + 750;
             loanButton.innerHTML = "Pay Back";
             balanceElement.innerHTML = "Balance: $" + balance;
+            if (balance < debtNum.innerHTML) { 
+                loanButton.style.display = 'none';
+            }
+        }
+        if (balance < betAmount.innerHTML) {
+            spinButton.style.display = 'none';
+            spinButton.setAttribute('class', 'open');
+            spinButton.setAttribute('class', 'disabled');
+        } else {
+            spinButton.style.display = 'block';
+            spinButton.setAttribute('class', 'open');
         }
     });
 }
@@ -218,6 +230,12 @@ backOrQuitButton.onmousedown = function() {
             console.log("Quit Game");
             window.close();
         } else {
+            resetGame();
+            loanButton.innerHTML = "Loan";
+            loanButton.style.top = "93%";
+            loanButton.style.left = "93%";
+            loanButton.style.width = "150px";
+            debtElement.style.left = "88%";
             backOrQuitButton.style.left = "7%";
             backOrQuitButton.innerHTML = "Quit";
             // go back to title screen
@@ -245,7 +263,15 @@ backOrQuitButton.onmousedown = function() {
             titleText.style.display = 'block';
             background.setAttribute('src', '../images/TitleScreen.jpg');
             currentScreen = "title";
+            profileText.contentEditable = 'false';
         }
+        if (currentScreen != "main") {
+        if (spinSound.paused == false) {
+            spinSound.pause();
+            return;
+        }
+        return;
+    }
     });
 }
 
@@ -268,6 +294,14 @@ bet10.onmousedown = function() {
         amountOptions.style.display = 'none';
         betButton.innerHTML = '↓  Bet: <strong>$</strong><strong id="betAmount">10</strong>  ↓'
     });
+    if (balance < 10) {
+        spinButton.style.display = 'none';
+        spinButton.setAttribute('class', 'open');
+        spinButton.setAttribute('class', 'disabled');
+    } else {
+        spinButton.style.display = 'block';
+        spinButton.setAttribute('class', 'open');
+    }
 }
 
 bet100.onmousedown = function() {
@@ -276,6 +310,14 @@ bet100.onmousedown = function() {
         amountOptions.style.display = 'none';
         betButton.innerHTML = '↓  Bet: <strong>$</strong><strong id="betAmount">100</strong>  ↓'
     });
+    if (balance < 100) {
+        spinButton.style.display = 'none';
+        spinButton.setAttribute('class', 'open');
+        spinButton.setAttribute('class', 'disabled');
+    } else {
+        spinButton.style.display = 'block';
+        spinButton.setAttribute('class', 'open');
+    }
 }
 
 bet1000.onmousedown = function() {
@@ -284,6 +326,14 @@ bet1000.onmousedown = function() {
         amountOptions.style.display = 'none';
         betButton.innerHTML = '↓  Bet: <strong>$</strong><strong id="betAmount">1000</strong>  ↓'
     });
+    if (balance < 1000) {
+        spinButton.style.display = 'none';
+        spinButton.setAttribute('class', 'open');
+        spinButton.setAttribute('class', 'disabled');
+    } else {
+        spinButton.style.display = 'block';
+        spinButton.setAttribute('class', 'open');
+    }
 }
 
 betAll.onmousedown = function() {
@@ -292,6 +342,14 @@ betAll.onmousedown = function() {
         amountOptions.style.display = 'none';
         betButton.innerHTML = '↓  Bet: <strong>$</strong><strong id="betAmount">ALL IN</strong>  ↓'
     });
+    if (balance <= 0) {
+        spinButton.style.display = 'none';
+        spinButton.setAttribute('class', 'open');
+        spinButton.setAttribute('class', 'disabled');
+    } else {
+        spinButton.style.display = 'block';
+        spinButton.setAttribute('class', 'open');
+    }
 }
 
 spinButton.onmousedown = function() {
@@ -300,15 +358,23 @@ spinButton.onmousedown = function() {
         if (bet == 'ALL IN') {
             bet = balance;
         }
+        if (balance < debtNum.innerHTML) { 
+            loanButton.style.display = 'none';
+        }
         balance -= parseInt(bet);
         balanceElement.innerHTML = "Balance: $" + balance;
         console.log("Spin Button Clicked");
         spinSound.currentTime = 0;
         spinSound.play();
         spinButton.setAttribute('class', 'disabled');
+        spinButton.style.display = 'none';
+        brokeCheckInterval = clearInterval(brokeCheckInterval);
+        spinningCheck[0] = true;
+        betButton.style.display = 'none';
+        backOrQuitButton.style.display = 'none';
+        loanButton.style.display = 'none';
         // while loop to simulate spinning slots
         while (true) {
-            spinningCheck[0] = true;
             let spinInterval = setInterval(function() {
                 slotArray[0] = Math.floor(Math.random() * 10) + 1;
                 slotArray[1] = Math.floor(Math.random() * 10) + 1;
@@ -319,45 +385,58 @@ spinButton.onmousedown = function() {
             }, 100);
             // break condition to stop spinning after 3 seconds
             setTimeout(function() {
-                if (balance > 0) {
+                if (currentScreen == "main") {
+                    betButton.style.display = 'block';
+                    backOrQuitButton.style.display = 'block';
+                    if (balance > 0 && balance >= bet) {
+                        spinButton.setAttribute('class', 'open');
+                        spinButton.style.display = 'block';
+                    } else {
+                        spinButton.setAttribute('class', 'disabled');
+                        spinButton.style.display = 'none';
+                    }
+                    if (balance < debtNum.innerHTML) { 
+                        loanButton.style.display = 'none';
+                        loanButton.setAttribute('class', 'disabled');
+                    } else {
+                        loanButton.style.display = 'block';
+                        loanButton.setAttribute('class', 'open');
+                        loanButton.disabled = false;
+                    }
                     spinButton.setAttribute('class', 'open');
+                    spinInterval = clearInterval(spinInterval);
+                    if (slotArray[0] == slotArray[1] && slotArray[1] == slotArray[2]) {
+                        console.log("Jackpot! Three of a kind: ");
+                        jackpotSound.currentTime = 0;
+                        jackpotSound.play();
+                        // right now the user wins 10x their bet for hitting the jackpot
+                        balance += parseInt(bet) * 10;
+                        balanceElement.innerHTML = "Balance: $" + balance;
+                    } else if (slotArray[0] == slotArray[1] || slotArray[1] == slotArray[2] || slotArray[0] == slotArray[2]) {
+                        // user wins 2x their bet for two of a kind
+                        console.log("Two of a kind!");
+                        jackpotSound.currentTime = 0;
+                        jackpotSound.play();
+                        balance += parseInt(bet) * 2;
+                        balanceElement.innerHTML = "Balance: $" + balance;
+                    } else {
+                        console.log("No match.");
+                    }
+                    
+                    let brokeCheckInterval = setInterval(brokeCheck, 10);
                 } else {
-                    spinButton.setAttribute('class', 'disabled');
+                    spinSound.pause();
+                    spinInterval = clearInterval(spinInterval);
                 }
-                spinButton.setAttribute('class', 'open');
-                spinInterval = clearInterval(spinInterval);
-                if (slotArray[0] == slotArray[1] && slotArray[1] == slotArray[2]) {
-                    console.log("Jackpot! Three of a kind: ");
-                    jackpotSound.currentTime = 0;
-                    jackpotSound.play();
-                    // right now the user wins 10x their bet for hitting the jackpot
-                    balance += parseInt(bet) * 10;
-                    balanceElement.innerHTML = "Balance: $" + balance;
-                } else if (slotArray[0] == slotArray[1] || slotArray[1] == slotArray[2] || slotArray[0] == slotArray[2]) {
-                    // user wins 2x their bet for two of a kind
-                    console.log("Two of a kind!");
-                    jackpotSound.currentTime = 0;
-                    jackpotSound.play();
-                    balance += parseInt(bet) * 2;
-                    balanceElement.innerHTML = "Balance: $" + balance;
-                } else {
-                    console.log("No match.");
-                }
-                console.log("Bet Amount: $" + bet);
-                console.log("New Balance: $" + balance);
-                brokeCheck();
             }, 4000);
             spinningCheck[0] = false;
             break; 
         }
-    
     });
 }
 
-loseScreen.onmousedown = function() {
-        // go back to title screen with 1000 balance
-        console.log("Back to Title Screen from Lose Screen");
-        // reset all elements to title screen
+function resetGame() {
+    // reset all elements to title screen
         createNewProfile.style.display = 'none';
         amountOptions.style.display = 'none';
         debtElement.style.display = 'none';
@@ -388,6 +467,7 @@ loseScreen.onmousedown = function() {
         debtElement.style.left = "88%";
         backOrQuitButton.style.left = "7%";
         backOrQuitButton.innerHTML = "Quit";
+        profileText.contentEditable = 'false';
         loanButton.disabled = false;
         balanceElement.innerHTML = "Balance: $" + balance;
         debtNum.innerHTML = 0;
@@ -395,26 +475,58 @@ loseScreen.onmousedown = function() {
         music.play();
 }
 
-function brokeCheck() {
-    if (balance <= 0) {
-        spinButton.setAttribute('class', 'disabled');
-        if (debtNum.innerHTML > 0) {
-            // show lose screen
-            console.log("User has lost the game.");
-            loseScreen.style.display = 'block';
-            balance = 0;
-            balanceElement.innerHTML = "Balance: $" + balance;
-            music.pause();
+loseScreen.onmousedown = function() {
+        // go back to title screen with 1000 balance
+        console.log("Back to Title Screen from Lose Screen");
+        resetGame();
+}
 
+function brokeCheck() {
+    if (currentScreen != "main") {
+        if (spinSound.paused == false) {
+            spinSound.pause();
+            return;
         }
-    } else {
-        loseScreen.style.display = 'none';
-        spinButton.setAttribute('class', 'open');
+        return;
     }
-    if (debtNum.innerHTML <= balance) {
-        loanButton.diabled = false;
+    if (spinningCheck[0]) {
+        return;
     } else {
-        loanButton.disabled = true;
+        if (spinSound.paused == true) {
+            console.log("Broke check running.");
+            if (balance < betAmount.innerHTML) {
+                spinButton.style.display = 'none';
+                spinButton.setAttribute('class', 'open');
+                spinButton.setAttribute('class', 'disabled');
+            } else {
+                spinButton.style.display = 'block';
+                spinButton.setAttribute('class', 'open');
+            }
+            if (balance <= 0) {
+                spinButton.setAttribute('class', 'disabled');
+                if (debtNum.innerHTML > 0) {
+                    // show lose screen
+                    console.log("User has lost the game.");
+                    loseScreen.style.display = 'block';
+                    balance = 0;
+                    balanceElement.innerHTML = "Balance: $" + balance;
+                    music.pause();
+
+                }
+            } else {
+                loseScreen.style.display = 'none';
+                spinButton.setAttribute('class', 'open');
+            }
+            if (debtNum.innerHTML <= balance) {
+                loanButton.disabled = false;
+                loanButton.style.display = 'block';
+                loanButton.setAttribute('class', 'open');
+            } else {
+                loanButton.disabled = true;
+                loanButton.style.display = 'none';
+                loanButton.setAttribute('class', 'disabled');
+            }
+        }
     }
 }
 
