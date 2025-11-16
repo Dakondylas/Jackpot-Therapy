@@ -1,6 +1,11 @@
 // Title screen elements
 let startButton = document.getElementById('startButton');
 let titleText = document.getElementById('titleText');
+let welcomeSign = document.getElementById('welcomeSign');
+let slotMachineTitle = document.getElementById('slotMachineTitle');
+let subtitle = document.querySelector('.subtitle');
+let titleScreenContainer = document.querySelector('.title-screen-container');
+
 // Profile screen elements
 let createNewProfile = document.getElementById('createNewProfile');
 let profileText = document.getElementById('profileText');
@@ -259,8 +264,13 @@ backOrQuitButton.onmousedown = function() {
             spinButton.style.display = 'none';
             loanButton.style.display = 'none';
             betButton.style.display = 'none';
+            // Show title screen elements
+            titleScreenContainer.style.display = 'flex';
             startButton.style.display = 'block';
             titleText.style.display = 'block';
+            welcomeSign.style.display = 'block';
+            slotMachineTitle.style.display = 'block';
+            subtitle.style.display = 'block';
             background.setAttribute('src', '../images/TitleScreen.jpg');
             currentScreen = "title";
             profileText.contentEditable = 'false';
@@ -437,6 +447,8 @@ spinButton.onmousedown = function() {
 
 function resetGame() {
     // reset all elements to title screen
+        themeButton.style.display = "none";
+        themeManager.style.display = "none";
         createNewProfile.style.display = 'none';
         amountOptions.style.display = 'none';
         debtElement.style.display = 'none';
@@ -455,8 +467,13 @@ function resetGame() {
         spinButton.style.display = 'none';
         loanButton.style.display = 'none';
         betButton.style.display = 'none';
+        // Show title screen elements
+        titleScreenContainer.style.display = 'flex';
         startButton.style.display = 'block';
         titleText.style.display = 'block';
+        welcomeSign.style.display = 'block';
+        slotMachineTitle.style.display = 'block';
+        subtitle.style.display = 'block';
         background.setAttribute('src', '../images/TitleScreen.jpg');
         currentScreen = "title";
         balance = 1000;
@@ -556,8 +573,14 @@ function profileScreen() {
         // Remove objects from title screen and main screen and goes to the profile select screen
         profileText.innerHTML = "Select Profile";
         selectButton.style.display = 'none';
+        // Hide title screen elements
+        titleScreenContainer.style.display = 'none';
         startButton.style.display = 'none';
         titleText.style.display = 'none';
+        welcomeSign.style.display = 'none';
+        slotMachineTitle.style.display = 'none';
+        subtitle.style.display = 'none';
+        // Show profile elements
         createNewProfile.style.display = 'block';
         profileText.style.display = 'block';
         profileNameElement.style.display = 'none';
@@ -617,6 +640,13 @@ function mainScreen(){
         selectButton.style.display = 'none';
         avatarSelectMid.setAttribute('class', 'avatar3')
     }
+    // Hide title screen elements
+    themeButton.style.display = "block";
+    titleScreenContainer.style.display = 'none';
+    welcomeSign.style.display = 'none';
+    slotMachineTitle.style.display = 'none';
+    subtitle.style.display = 'none';
+    // Show main screen elements
     profileNameElement.style.display = 'block';
     balanceElement.style.display = 'block';
     slot1.style.display = 'block';
@@ -630,3 +660,54 @@ function mainScreen(){
     // change background to main screen
     background.setAttribute('src', '../images/MainScreen.jpg');
 }
+
+// Theme Manager Elements
+let themeButton = document.getElementById("themeButton");
+let themeManager = document.getElementById("themeManager");
+let closeThemeManager = document.getElementById("closeThemeManager");
+
+// Theme buttons
+let themePurple = document.getElementById("themePurple");
+let themeBlue = document.getElementById("themeBlue");
+let themeDark = document.getElementById("themeDark");
+
+// Helper: apply a theme without removing other body classes
+function applyTheme(themeName) {
+    document.body.classList.remove("theme-purple", "theme-blue", "theme-dark");
+    document.body.classList.add(themeName);
+
+    // Glow automatically updates because CSS variables change
+}
+
+// Open Theme Manager
+themeButton.onmousedown = function () {
+    buttonClick(themeButton, function () {
+        themeManager.style.display = "block";
+    });
+};
+
+// Close Theme Manager
+closeThemeManager.onmousedown = function () {
+    buttonClick(closeThemeManager, function () {
+        themeManager.style.display = "none";
+    });
+};
+
+// Select Themes
+themePurple.onmousedown = function () {
+    buttonClick(themePurple, function () {
+        applyTheme("theme-purple");
+    });
+};
+
+themeBlue.onmousedown = function () {
+    buttonClick(themeBlue, function () {
+        applyTheme("theme-blue");
+    });
+};
+
+themeDark.onmousedown = function () {
+    buttonClick(themeDark, function () {
+        applyTheme("theme-dark");
+    });
+};
