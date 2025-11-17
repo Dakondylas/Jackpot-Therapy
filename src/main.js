@@ -352,6 +352,7 @@ betAll.onmousedown = function() {
     }
 }
 
+// this has all the logic for the spinning of the slots and winning/losing
 spinButton.onmousedown = function() {
     buttonClick(spinButton, function() {
         let bet = betAmount.innerHTML;
@@ -481,6 +482,12 @@ loseScreen.onmousedown = function() {
         resetGame();
 }
 
+// this is a big ass function of general things that get checked every 10th of a second
+// in an interval called brokeCheckInterval. This also runs at the end of every spin.
+
+// spinningCheck is a variable that I use to check whether the slots are currently spinning so that 
+// broke check is not run during the spin, that can cause issues like the game over screen appearing after 
+// an ALL IN bet.
 function brokeCheck() {
     if (currentScreen != "main") {
         if (spinSound.paused == false) {
@@ -504,6 +511,7 @@ function brokeCheck() {
             }
             if (balance <= 0) {
                 spinButton.setAttribute('class', 'disabled');
+                spinButton.style.display = 'none';
                 if (debtNum.innerHTML > 0) {
                     // show lose screen
                     console.log("User has lost the game.");
@@ -529,6 +537,7 @@ function brokeCheck() {
         }
     }
 }
+
 
 // function for button clicking, does the clicking animation, plays the click sound, and when you 
 // release the mouse it does the specified action. button parameter is the button element. action parameter 
@@ -605,8 +614,10 @@ function profileScreen() {
 function mainScreen(){
     if (balance > 0) {
         spinButton.setAttribute('class', 'open');
+        spinButton.style.display = 'block';
     } else {
         spinButton.setAttribute('class', 'disabled');
+        spinButton.style.display = 'none';
     }
     backOrQuitButton.innerHTML = "Save and Quit";
     backOrQuitButton.style.left = "12%";
